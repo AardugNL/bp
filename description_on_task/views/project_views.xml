@@ -44,9 +44,9 @@
                     <field name="description"/>
                 </field>
                 <xpath expr="//kanban/templates/t/div/div/div/div/strong" position="before">
-                    <p>
-                        <field name="description"/>
-                    </p>
+                    <span>
+                        <field name="description" widget="html"/>
+                    </span>
                 </xpath>
             </field>
         </record>
