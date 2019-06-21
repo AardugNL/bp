@@ -28,7 +28,7 @@
                             <field name="tag_ids" widget="many2many_tags"/>
                         </group>
                         <group>
-                            <field name="description" nolabel="1" style="margin-top:-70px;"/>
+                            <field name="description" type="html" nolabel="1" style="margin-top:-70px;"/>
                         </group>
                     </group>
                 </xpath>
