@@ -6,22 +6,26 @@
 #
 ##############################################################################
 {
-    'name': "Task Description",
-    'version': '12.0',
-    'summary': """ Add Description Field In Project Task Kanban View""",
-    'category': 'Project',
-    'description': """ 
-        Add Description Field In Project Task Kanban View
+    'name': "Task Advance",
+    'summary': """""",
+    'description': """
+
     """,
     'author': 'Caret IT Solutions Pvt. Ltd.',
     'website': 'http://www.caretit.com',
-    'depends': ['project', 'task_advance'],
+    'category': 'Project',
+    'version': '12.0',
+    'depends': ['project', 'hr_timesheet'],
     'data': [
-        # 'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
+        'data/project.xml',
+        'views/assets.xml',
         'views/project_views.xml',
+        'views/machine_view.xml',
     ],
-    'images': [],
-    'price': 00,
-    'currency': 'EUR',
-    'qweb': [],
+    'qweb': [
+        'static/src/xml/templates.xml',
+    ],
+    'demo': [
+    ],
 }

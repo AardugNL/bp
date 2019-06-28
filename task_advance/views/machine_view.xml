@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="capacity_machine_form" model="ir.ui.view">
+            <field name="name">Capacity Form</field>
+            <field name="model">capacity.machine</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="resource_id" required="1"/>
+                                <field name="remain_capacity" widget="float_time"/>
+                            </group>
+                            <group>
+                                <field name="date" required="1"/>
+                                <field name="capacity" widget="float_time"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="tasks" string="Tasks">
+                                <field name="task_ids" readonly="1">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="production_start_time"/>
+                                        <field name="production_end_time"/>
+                                        <field name="production_time_count" widget="timesheet_uom"/>
+                                    </tree>
+                                </field>
+                                <group>
+                                    <group class="oe_subtotal_footer oe_right">
+                                        <field name="total_Production_time" widget="float_time"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="capacity_machine_tree" model="ir.ui.view">
+            <field name="name">Capacity Tree</field>
+            <field name="model">capacity.machine</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="resource_id"/>
+                    <field name="date"/>
+                    <field name="capacity" widget="float_time"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_capacity_machine" model="ir.actions.act_window">
+            <field name="name">Capacity</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">capacity.machine</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Machine Capacity" id="menu_machine_capacity" parent="project.menu_project_config" action="action_capacity_machine"/>
+
+    </data>
+</odoo>
