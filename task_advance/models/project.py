@@ -24,19 +24,13 @@ class ProjectTask(models.Model):
     production_time_count = fields.Float('Production Time')
     capacity_machine_id = fields.Many2one('capacity.machine', string='Machine Capacity')
     resource_id = fields.Many2one('resource.resource', string='Machine')
-    production_state = fields.Selection([
-        ('done', 'Done'),
-        ('blocked', 'Blocked')
-    ])
-
+    production_state = fields.Selection([('done', 'Done'), ('blocked', 'Blocked')])
 
     @api.onchange('production_start_time', 'production_end_time')
     def _onchange_production_date(self):
         if self.production_start_time and self.production_end_time:
-            date_diff = self.production_end_time - self.production_start_time
-            total_seconds = date_diff.total_seconds()
-            minutes = int(total_seconds // 60)
-            self.production_time_count = minutes
+            diffInSecond = (self.production_end_time - self.production_start_time).total_seconds()
+            self.production_time_count = float((diffInSecond // 60) / 60)
             if self.production_time_count > 0:
                 self.production_state = 'done'
             else:
