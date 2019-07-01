@@ -109,7 +109,11 @@
                             <div class="oe_kanban_content">
                                 <div class="o_kanban_record_top">
                                     <div class="o_kanban_record_headings">
-                                        <strong class="o_kanban_record_title"><field name="name"/></strong><br/>
+                                        <field name="description" widget="html"/>
+                                        <strong class="o_kanban_record_title">
+                                            <field name="name"/>
+                                        </strong>
+                                        <br/>
                                         <small class="o_kanban_record_subtitle text-muted">
                                             <field name="project_id" invisible="context.get('default_project_id', False)"/>
                                             <t t-if="record.production_start_time.raw_value and record.production_start_time.raw_value lt (new Date())" t-set="red">oe_kanban_text_red</t>
@@ -182,14 +186,14 @@
             <field name="model">project.task</field>
             <field name="inherit_id" ref="project.view_task_form2"/>
             <field name="arch" type="xml">
-                <field name="tag_ids" position="after">
+                <xpath expr="//form/sheet/group/group[1]" position="inside">
                     <field name="production_start_time"/>
                     <field name="production_end_time"/>
                     <field name="production_time_count" widget="float_time"/>
                     <field name="resource_id"/>
                     <field name="capacity_machine_id" domain="[('resource_id', '=', resource_id)]"/>
                     <field name="production_state" invisible="0"/>
-                </field>
+                </xpath>
             </field>
         </record>
 
