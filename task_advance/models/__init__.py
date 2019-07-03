@@ -8,3 +8,5 @@
 
 from . import project
 from . import machine
+from . import product
+from . import order_line

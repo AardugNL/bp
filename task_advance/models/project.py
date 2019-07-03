@@ -26,15 +26,15 @@ class ProjectTask(models.Model):
     resource_id = fields.Many2one('resource.resource', string='Machine')
     production_state = fields.Selection([('done', 'Done'), ('blocked', 'Blocked')])
 
-    @api.onchange('production_start_time', 'production_end_time')
-    def _onchange_production_date(self):
-        if self.production_start_time and self.production_end_time:
-            diffInSecond = (self.production_end_time - self.production_start_time).total_seconds()
-            self.production_time_count = float((diffInSecond // 60) / 60)
-            if self.production_time_count > 0:
-                self.production_state = 'done'
-            else:
-                self.production_state = 'blocked'
+    # @api.onchange('production_start_time', 'production_end_time')
+    # def _onchange_production_date(self):
+    #     if self.production_start_time and self.production_end_time:
+    #         diffInSecond = (self.production_end_time - self.production_start_time).total_seconds()
+    #         self.production_time_count = float((diffInSecond // 60) / 60)
+    #         if self.production_time_count > 0:
+    #             self.production_state = 'done'
+    #         else:
+    #             self.production_state = 'blocked'
 
     @api.constrains('capacity_machine_id')
     def _check_parent_id(self):

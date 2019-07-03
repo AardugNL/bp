@@ -15,13 +15,16 @@
     'website': 'http://www.caretit.com',
     'category': 'Project',
     'version': '12.0',
-    'depends': ['project', 'hr_timesheet'],
+    'depends': ['project', 'hr_timesheet', 'sale_management', 'product',
+                'sale_timesheet'],
     'data': [
         'security/ir.model.access.csv',
         'data/project.xml',
         'views/assets.xml',
         'views/project_views.xml',
         'views/machine_view.xml',
+        'views/product_view.xml',
+        'views/orderline_view.xml'
     ],
     'qweb': [
         'static/src/xml/templates.xml',

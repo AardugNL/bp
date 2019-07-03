@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="task_advance_order_line_inherit_id" model="ir.ui.view">
+            <field name="name">task_advance_order_line_inherit_id</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page/field/tree/field[@name='product_uom_qty']" position="after">
+                    <field name="total_production_time" widget="float_time"/>
+                    <field name="resource_id"/>
+                    <field name="capacity_machine_id" domain="[('resource_id', '=', resource_id)]"/>
+                </xpath>
+                <xpath expr="//notebook/page/field/tree/field[@name='product_id']" position="before">
+                    <field name="group"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

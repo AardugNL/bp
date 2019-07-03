@@ -187,9 +187,9 @@
             <field name="inherit_id" ref="project.view_task_form2"/>
             <field name="arch" type="xml">
                 <xpath expr="//form/sheet/group/group[1]" position="inside">
-                    <field name="production_start_time"/>
-                    <field name="production_end_time"/>
-                    <field name="production_time_count" widget="float_time"/>
+                    <field name="production_start_time" invisible="1"/>
+                    <field name="production_end_time" invisible="1"/>
+                    <field name="production_time_count" widget="float_time" readonly="1"/>
                     <field name="resource_id"/>
                     <field name="capacity_machine_id" domain="[('resource_id', '=', resource_id)]"/>
                     <field name="production_state" invisible="0"/>
