@@ -21,7 +21,7 @@
                         </h1>
                     </div>
                 </xpath>
-                <field name="production_start_time" position="before">
+                <field name="production_time_count" position="before">
                     <field name="project_id"/>
                     <field name="user_id"/>
                     <field name="date_deadline"/>
