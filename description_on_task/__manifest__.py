@@ -24,10 +24,8 @@
     'depends': ['project', 'task_advance'],
     'data': [
         # 'security/ir.model.access.csv',
+        'views/assets_backend.xml',
         'views/project_views.xml',
     ],
-    'images': [],
-    'price': 00,
-    'currency': 'EUR',
-    'qweb': [],
+    # 'qweb': ['static/src/xml/*.xml'],
 }

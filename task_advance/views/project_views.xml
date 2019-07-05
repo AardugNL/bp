@@ -84,6 +84,7 @@
                     <field name="color"/>
                     <field name="priority"/>
                     <field name="stage_id" options='{"group_by_tooltip": {"description": "Stage Description", "legend_priority": "Use of stars"}}'/>
+                    <field name="id"/>
                     <field name="user_id"/>
                     <field name="user_email"/>
                     <field name="sequence"/>
@@ -106,7 +107,7 @@
                     <templates>
                     <t t-name="kanban-box">
                         <div t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)} oe_kanban_card oe_kanban_global_click">
-                            <div class="oe_kanban_content">
+                            <div class="oe_kanban_content" t-att-data-id="record.id.value">
                                 <div class="o_kanban_record_top">
                                     <div class="o_kanban_record_headings">
                                         <field name="description" widget="html"/>

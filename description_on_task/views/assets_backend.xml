@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<odoo> 
+    <data> 
+        <template id="assets_backend" name="Task Javascript" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside"> 
+                <script type="text/javascript" src="/description_on_task/static/src/js/description.js"/>
+                <link rel="stylesheet" type="text/scss" href="/description_on_task/static/src/scss/kanban_decorator.scss"/>
+            </xpath>
+        </template>
+    </data> 
+</odoo>
