@@ -1,18 +1,16 @@
 odoo.define('task_advance.TaskKanbanProgressBar', function (require) {
 'use strict';
-    
+
     var utils = require('web.utils');
     var KanbanColumnProgressBar = require('web.KanbanColumnProgressBar');
 
-    var KanbanColumnProgressBar = KanbanColumnProgressBar.include({
+    KanbanColumnProgressBar.include({
         init: function (parent, options, columnState) {
             this._super.apply(this, arguments);
             // this._super(parent, options, columnState);
-            this.columnID = options.columnID;
-            var state = options.progressBarStates[this.columnID];
-            console.log('state........',state);
-            console.log(this);
+            console.log('parent............',parent);
             this.progessBarPercentage = 0;
+            console.log(this, this.progessBarPercentage);
         },
 
         _render: function () {

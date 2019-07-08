@@ -3,3 +3,6 @@
         width: 100%;
     }
 }
+.o_kanban_view.o_kanban_grouped.o_kanban_small_column.kanban_large_width .o_kanban_group:not(.o_column_folded) {
+    width: 350px !important;
+}
