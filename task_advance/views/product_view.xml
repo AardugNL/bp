@@ -12,9 +12,10 @@
                         <group>
                             <group>
                                 <field name="resource_id"/>
-                                <field name="capacity_machine_id" domain="[('resource_id', '=', resource_id)]"/>
+                                <field name="capacity_machine_id" domain="[('resource_id', '=', resource_id)]" invisible="1"/>
                                 <field name="preproduction_time" widget="float_time"/>
                                 <field name="postproduction_time" widget="float_time"/>
+                                <field name="product_lead_time" widget="float_time"/>
                             </group>
                             <group>
                                 <field name="production_time_1" widget="float_time"/>

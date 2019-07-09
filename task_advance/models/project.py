@@ -37,8 +37,8 @@ class ProjectTask(models.Model):
     #             self.production_state = 'blocked'
 
     # ToDo write perfect code right now it create issue when confirm sale order
-    @api.constrains('capacity_machine_id')
-    def _check_parent_id(self):
-        if self.capacity_machine_id.resource_id != self.resource_id:
-            raise ValidationError('\
-                Warning! To Change Machine Capacity, You First Need To Change Machine')
+    # @api.constrains('capacity_machine_id')
+    # def _check_parent_id(self):
+    #     if self.capacity_machine_id.resource_id != self.resource_id:
+    #         raise ValidationError('\
+    #             Warning! To Change Machine Capacity, You First Need To Change Machine')

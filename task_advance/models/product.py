@@ -21,3 +21,4 @@ class ProductTemplate(models.Model):
     production_time_3 = fields.Float('Production Time 3')
     postproduction_time = fields.Float('Post Production Time')
     max_production_time= fields.Float('Max Production Time')
+    product_lead_time = fields.Float('Product Lead Time')
