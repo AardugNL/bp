@@ -2,7 +2,7 @@
 <odoo>
     <data>
 
-        <record id="edit_project_form_inh_task_advance" model="ir.ui.view">
+        <record id="aa_edit_project_form_inh_task_advance" model="ir.ui.view">
             <field name="name">Projects</field>
             <field name="model">project.project</field>
             <field name="inherit_id" ref="project.edit_project"/>
@@ -13,7 +13,7 @@
             </field>
         </record>
 
-        <record id="view_task_dashboard_search" model="ir.ui.view">
+        <record id="aa_view_task_dashboard_search" model="ir.ui.view">
             <field name="name">project.task.search.kanaban</field>
             <field name="model">project.task</field>
             <field name="arch" type="xml">
@@ -27,50 +27,50 @@
                     <filter string="Production" name="production"
                         domain="[('project_id.production_project', '=', True)]"/>
                     <separator/>
-                    <filter string="Today" name="production_today"
-                        domain="[('capacity_machine_id.date', '&gt;=', datetime.datetime.now().strftime('%Y-%m-%d 00:00:00')),('capacity_machine_id.date', '&lt;=',datetime.datetime.now().strftime('%Y-%m-%d 23:23:59'))]"/>
-                    <filter string="Yesterday" name="yesterday_production"
-                        domain="[('capacity_machine_id.date','&gt;=', ((context_today()-datetime.timedelta(days=1)).strftime('%Y-%m-%d 00:00:00'))), ('capacity_machine_id.date','&lt;=', ((context_today()-datetime.timedelta(days=1)).strftime('%Y-%m-%d 23:23:59')))]"/>
-                    <filter string="Tomorrow" name="tomorrow_production"
-                        domain="[('capacity_machine_id.date','&gt;=', ((context_today()+datetime.timedelta(days=1)).strftime('%Y-%m-%d 00:00:00 '))), ('capacity_machine_id.date','&lt;=', ((context_today()+datetime.timedelta(days=1)).strftime('%Y-%m-%d 23:23:59')))]"/>
-                    <filter string="This week" name="this_week_production"
-                        domain="[('capacity_machine_id.date', '&gt;=', ((context_today()+relativedelta(weeks=-1,days=1, weekday=0)).strftime('%Y-%m-%d'))),('capacity_machine_id.date', '&lt;=', ((context_today()+relativedelta(weeks=0,weekday=6)).strftime('%Y-%m-%d')))]"/>
-                    <filter string="Last week" name="last_week_production"
-                        domain="[('capacity_machine_id.date', '&gt;=', ((context_today()+relativedelta(weeks=-2,days=1, weekday=0)).strftime('%Y-%m-%d'))),('capacity_machine_id.date', '&lt;=', ((context_today()+relativedelta(weeks=-1,weekday=6)).strftime('%Y-%m-%d')))]"/>
-                    <filter string="Next Week" name="next_week_production"
-                        domain="[('capacity_machine_id.date','&gt;=',(context_today()+relativedelta(weeks=0,weekday=6)).strftime('%Y-%m-%d')),
-                        ('capacity_machine_id.date','&lt;',(context_today()+relativedelta(weeks=1,weekday=6)).strftime('%Y-%m-%d'))
+                    <filter string="Today" name="aa_production_today"
+                        domain="[('aa_capacity_machine_id.aa_date', '&gt;=', datetime.datetime.now().strftime('%Y-%m-%d 00:00:00')),('aa_capacity_machine_id.aa_date', '&lt;=',datetime.datetime.now().strftime('%Y-%m-%d 23:23:59'))]"/>
+                    <filter string="Yesterday" name="aa_yesterday_production"
+                        domain="[('aa_capacity_machine_id.aa_date','&gt;=', ((context_today()-datetime.timedelta(days=1)).strftime('%Y-%m-%d 00:00:00'))), ('aa_capacity_machine_id.aa_date','&lt;=', ((context_today()-datetime.timedelta(days=1)).strftime('%Y-%m-%d 23:23:59')))]"/>
+                    <filter string="Tomorrow" name="aa_tomorrow_production"
+                        domain="[('aa_capacity_machine_id.aa_date','&gt;=', ((context_today()+datetime.timedelta(days=1)).strftime('%Y-%m-%d 00:00:00 '))), ('aa_capacity_machine_id.aa_date','&lt;=', ((context_today()+datetime.timedelta(days=1)).strftime('%Y-%m-%d 23:23:59')))]"/>
+                    <filter string="This week" name="aa_this_week_production"
+                        domain="[('aa_capacity_machine_id.aa_date', '&gt;=', ((context_today()+relativedelta(weeks=-1,days=1, weekday=0)).strftime('%Y-%m-%d'))),('aa_capacity_machine_id.aa_date', '&lt;=', ((context_today()+relativedelta(weeks=0,weekday=6)).strftime('%Y-%m-%d')))]"/>
+                    <filter string="Last week" name="aa_last_week_production"
+                        domain="[('aa_capacity_machine_id.aa_date', '&gt;=', ((context_today()+relativedelta(weeks=-2,days=1, weekday=0)).strftime('%Y-%m-%d'))),('aa_capacity_machine_id.aa_date', '&lt;=', ((context_today()+relativedelta(weeks=-1,weekday=6)).strftime('%Y-%m-%d')))]"/>
+                    <filter string="Next Week" name="aa_next_week_production"
+                        domain="[('aa_capacity_machine_id.aa_date','&gt;=',(context_today()+relativedelta(weeks=0,weekday=6)).strftime('%Y-%m-%d')),
+                        ('aa_capacity_machine_id.aa_date','&lt;',(context_today()+relativedelta(weeks=1,weekday=6)).strftime('%Y-%m-%d'))
                         ]" />
-                    <filter string="This month" name="this_month_production"
-                        domain="[('capacity_machine_id.date','&gt;=',(context_today()).strftime('%Y-%m-01')),
-                        ('capacity_machine_id.date','&lt;',(context_today()+relativedelta(months=1)).strftime('%Y-%m-01'))
+                    <filter string="This month" name="aa_this_month_production"
+                        domain="[('aa_capacity_machine_id.aa_date','&gt;=',(context_today()).strftime('%Y-%m-01')),
+                        ('aa_capacity_machine_id.aa_date','&lt;',(context_today()+relativedelta(months=1)).strftime('%Y-%m-01'))
                         ]" />
-                    <filter string="Last month" name="last_month_production"
-                        domain="[('capacity_machine_id.date','&lt;=',(context_today()).strftime('%Y-%m-01')),
-                        ('capacity_machine_id.date','&gt;',(context_today()-relativedelta(months=1)).strftime('%Y-%m-01'))
+                    <filter string="Last month" name="aa_last_month_production"
+                        domain="[('aa_capacity_machine_id.aa_date','&lt;=',(context_today()).strftime('%Y-%m-01')),
+                        ('aa_capacity_machine_id.aa_date','&gt;',(context_today()-relativedelta(months=1)).strftime('%Y-%m-01'))
                         ]" />
-                    <filter string="Next month" name="next_month_production"
-                        domain="[('capacity_machine_id.date','&gt;=',(context_today()+relativedelta(months=1)).strftime('%Y-%m-01')),
-                        ('capacity_machine_id.date','&lt;',(context_today()+relativedelta(months=2)).strftime('%Y-%m-01'))
+                    <filter string="Next month" name="aa_next_month_production"
+                        domain="[('aa_capacity_machine_id.aa_date','&gt;=',(context_today()+relativedelta(months=1)).strftime('%Y-%m-01')),
+                        ('aa_capacity_machine_id.aa_date','&lt;',(context_today()+relativedelta(months=2)).strftime('%Y-%m-01'))
                         ]" />
-                    <filter string="This Year" name="this_year_production"
-                        domain="[('capacity_machine_id.date','&gt;=',(context_today()).strftime('%Y-01-%d')),
-                        ('capacity_machine_id.date','&lt;',(context_today()+relativedelta(years=1)).strftime('%Y-01-%d'))
+                    <filter string="This Year" name="aa_this_year_production"
+                        domain="[('aa_capacity_machine_id.aa_date','&gt;=',(context_today()).strftime('%Y-01-%d')),
+                        ('aa_capacity_machine_id.aa_date','&lt;',(context_today()+relativedelta(years=1)).strftime('%Y-01-%d'))
                         ]" />
-                    <filter string="Last Year" name="last_year_production"
-                        domain="[('capacity_machine_id.date','&lt;=',(context_today()).strftime('%Y-01-%d')),
-                        ('capacity_machine_id.date','&gt;',(context_today()-relativedelta(years=1)).strftime('%Y-01-%d'))
+                    <filter string="Last Year" name="aa_last_year_production"
+                        domain="[('aa_capacity_machine_id.aa_date','&lt;=',(context_today()).strftime('%Y-01-%d')),
+                        ('aa_capacity_machine_id.aa_date','&gt;',(context_today()-relativedelta(years=1)).strftime('%Y-01-%d'))
                         ]" />
-                    <filter string="Next Year" name="next_year_production" 
-                        domain="[('capacity_machine_id.date','&gt;=',(context_today()+relativedelta(years=1)).strftime('%Y-01-%d')),
-                        ('capacity_machine_id.date','&lt;',(context_today()+relativedelta(years=2)).strftime('%Y-01-%d'))
+                    <filter string="Next Year" name="aa_next_year_production" 
+                        domain="[('aa_capacity_machine_id.aa_date','&gt;=',(context_today()+relativedelta(years=1)).strftime('%Y-01-%d')),
+                        ('aa_capacity_machine_id.aa_date','&lt;',(context_today()+relativedelta(years=2)).strftime('%Y-01-%d'))
                         ]"/>
-                    <!-- <filter string="Production Start Date" name='gp_production_start_time' context="{'group_by':'production_start_time:day'}"/> -->
+                    <!-- <filter string="Production Start Date" name='gp_aa_production_start_time' context="{'group_by':'aa_production_start_time:day'}"/> -->
                     <!-- <filter string="Stage" name='gp_stage_id' context="{'group_by':'stage_id'}"/> -->
                     <group expand="0" string="Group By">
                         <filter string="Project" name="project" context="{'group_by':'project_id'}"/>
                         <filter string="Stage" name="stage" context="{'group_by':'stage_id'}"/>
-                        <filter string="Machine Capacity" name="capacity_machine_id" context="{'group_by':'capacity_machine_id'}"/>
+                        <filter string="Machine Capacity" name="aa_capacity_machine_id" context="{'group_by':'aa_capacity_machine_id'}"/>
                     </group>
                 </search>
             </field>
@@ -80,7 +80,7 @@
             <field name="name">task.dashboard.kanban</field>
             <field name="model">project.task</field>
             <field name="arch" type="xml">
-                <kanban class="o_kanban_small_column o_kanban_project_tasks kanban_large_width" on_create="quick_create" quick_create_view="project.quick_create_task_form" examples="project">
+                <kanban class="o_kanban_small_column o_kanban_project_tasks" on_create="quick_create" quick_create_view="project.quick_create_task_form" examples="project">
                     <field name="color"/>
                     <field name="priority"/>
                     <field name="stage_id" options='{"group_by_tooltip": {"description": "Stage Description", "legend_priority": "Use of stars"}}'/>
@@ -99,11 +99,11 @@
                     <field name="activity_state"/>
                     <field name="rating_last_value"/>
                     <field name="rating_ids"/>
-                    <field name="production_start_time"/>
-                    <field name="production_end_time"/>
-                    <field name="production_time_count"/>
-                    <field name="capacity_machine_id"/>
-                    <progressbar field="production_state" colors='{"done": "success", "blocked": "danger"}' sum_field="production_time_count"/>
+                    <field name="aa_production_start_time"/>
+                    <field name="aa_production_end_time"/>
+                    <field name="aa_production_time_count"/>
+                    <field name="aa_capacity_machine_id"/>
+                    <progressbar field="production_state" colors='{"done": "success", "blocked": "danger"}' sum_field="aa_production_time_count"/>
                     <templates>
                     <t t-name="kanban-box">
                         <div t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)} oe_kanban_card oe_kanban_global_click">
@@ -117,8 +117,8 @@
                                         <br/>
                                         <small class="o_kanban_record_subtitle text-muted">
                                             <field name="project_id" invisible="context.get('default_project_id', False)"/>
-                                            <t t-if="record.production_start_time.raw_value and record.production_start_time.raw_value lt (new Date())" t-set="red">oe_kanban_text_red</t>
-                                            <span t-attf-class="#{red || ''}"><i><field name="production_start_time"/></i></span>
+                                            <t t-if="record.aa_production_start_time.raw_value and record.aa_production_start_time.raw_value lt (new Date())" t-set="red">oe_kanban_text_red</t>
+                                            <span t-attf-class="#{red || ''}"><i><field name="aa_production_start_time"/></i></span>
                                             <t t-if="record.email_from.raw_value"><span><field name="email_from"/></span></t>
                                         </small>
                                     </div>
@@ -169,7 +169,7 @@
             </field>
         </record>
 
-        <record id="act_open_task_kanban_view" model="ir.actions.act_window">
+        <record id="aa_act_open_task_kanban_view" model="ir.actions.act_window">
             <field name="name">Dashboard</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">project.task</field>
@@ -177,10 +177,10 @@
             <field name="view_mode">kanban,form</field>
             <field name="view_id" ref="view_task_dashboard_kanban"/>
             <field name="context">{'search_default_capacity_machine_id': 1, 'search_default_production': 1}</field>
-            <field name="search_view_id" ref="view_task_dashboard_search"/>
+            <field name="search_view_id" ref="aa_view_task_dashboard_search"/>
         </record>
 
-        <menuitem name="Task Dashboard" id="menu_task_dashboard" parent="project.menu_main_pm" sequence="2" action="act_open_task_kanban_view"/>
+        <menuitem name="Task Dashboard" id="menu_task_dashboard" parent="project.menu_main_pm" sequence="2" action="aa_act_open_task_kanban_view"/>
 
         <record id="view_task_form2_inh" model="ir.ui.view">
             <field name="name">project.task.inh</field>
@@ -188,12 +188,12 @@
             <field name="inherit_id" ref="project.view_task_form2"/>
             <field name="arch" type="xml">
                 <xpath expr="//form/sheet/group/group[1]" position="inside">
-                    <field name="production_start_time" invisible="1"/>
-                    <field name="production_end_time" invisible="1"/>
-                    <field name="production_time_count" widget="float_time" readonly="1"/>
-                    <field name="resource_id"/>
-                    <field name="capacity_machine_id" domain="[('resource_id', '=', resource_id)]"/>
-                    <field name="production_state" invisible="0"/>
+                    <field name="aa_production_start_time" invisible="1"/>
+                    <field name="aa_production_end_time" invisible="1"/>
+                    <field name="aa_production_time_count" widget="float_time" readonly="1"/>
+                    <field name="aa_resource_id"/>
+                    <field name="aa_capacity_machine_id" domain="[('aa_resource_id', '=', aa_resource_id)]"/>
+                    <field name="aa_production_state" invisible="0"/>
                 </xpath>
             </field>
         </record>

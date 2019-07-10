@@ -24,8 +24,8 @@
     'depends': ['project', 'task_advance'],
     'data': [
         # 'security/ir.model.access.csv',
-        'views/assets_backend.xml',
-        'views/project_views.xml',
+        'views/aa_assets_backend.xml',
+        'views/aa_project_views.xml',
     ],
     # 'qweb': ['static/src/xml/*.xml'],
 }

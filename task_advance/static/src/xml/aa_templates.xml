@@ -8,7 +8,7 @@
 
     <t name="Kanban column Progress" t-extend="KanbanView.ColumnProgressBar">
         <t t-jquery="div.o_kanban_counter_progress" t-operation="before">
-            <t t-if="widget.columnState.model === 'project.task' and widget.columnState.progressBarValues.sum_field === 'production_time_count'">
+            <t t-if="widget.columnState.model === 'project.task' and widget.columnState.progressBarValues.sum_field === 'aa_production_time_count'">
                 <div style="margin-right: 5px;"><b><t t-esc="widget.progessBarPercentage || 0"/>%</b></div>
             </t>
         </t>

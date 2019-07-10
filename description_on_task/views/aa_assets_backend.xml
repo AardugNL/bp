@@ -3,8 +3,8 @@
     <data> 
         <template id="assets_backend" name="Task Javascript" inherit_id="web.assets_backend">
             <xpath expr="." position="inside"> 
-                <script type="text/javascript" src="/description_on_task/static/src/js/description.js"/>
-                <link rel="stylesheet" type="text/scss" href="/description_on_task/static/src/scss/kanban_decorator.scss"/>
+                <script type="text/javascript" src="/description_on_task/static/src/js/aa_description.js"/>
+                <link rel="stylesheet" type="text/scss" href="/description_on_task/static/src/scss/aa_kanban_decorator.scss"/>
             </xpath>
         </template>
     </data> 
