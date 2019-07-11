@@ -36,8 +36,8 @@ class aa_ProjectTask(models.Model):
     #         else:
     #             self.production_state = 'blocked'
 
-    @api.constrains('aa_capacity_machine_id')
-    def aa_check_parent_id(self):
-        if self.aa_capacity_machine_id.aa_resource_id != self.aa_resource_id:
-            raise ValidationError('\
-                Warning! To Change Machine Capacity, You First Need To Change Machine')
+    # @api.constrains('aa_capacity_machine_id')
+    # def aa_check_parent_id(self):
+    #     if self.aa_capacity_machine_id.aa_resource_id != self.aa_resource_id:
+    #         raise ValidationError('\
+    #             Warning! To Change Machine Capacity, You First Need To Change Machine')

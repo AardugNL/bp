@@ -28,7 +28,8 @@ class SaleOrderLine(models.Model):
     @api.onchange('product_id')
     def onchange_product(self):
         self.aa_resource_id = self.product_id.aa_resource_id
-        self.aa_capacity_machine_id = self.product_id.aa_capacity_machine_id
+        if self.product_id.aa_capacity_machine_id:
+            self.aa_capacity_machine_id = self.product_id.aa_capacity_machine_id
 
     def _timesheet_create_task_prepare_values(self, project):
         aa_res = super(SaleOrderLine, self)._timesheet_create_task_prepare_values(project)
