@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<odoo> 
+    <data> 
+        <template id="assets_backend" name="Task Javascript" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside"> 
+                  <script type="text/javascript" src="/description_on_task/static/src/script.js"/>
+            </xpath> 
+        </template> 
+         
+    </data> 
+</odoo>

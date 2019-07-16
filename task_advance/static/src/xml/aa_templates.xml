@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template>
+    <t name="Kanban Production Date" t-extend="KanbanView.Group">
+        <t t-jquery="span.o_column_unfold" t-operation="before">
+            <span class="o-kanban-count">(<t t-esc="widget.data.count"/>)</span>
+        </t>
+    </t>
+
+    <t name="Kanban column Progress" t-extend="KanbanView.ColumnProgressBar">
+        <t t-jquery="div.o_kanban_counter_progress" t-operation="before">
+            <t t-if="widget.columnState.model === 'project.task' and widget.columnState.progressBarValues.sum_field === 'aa_production_time_count'">
+                <div style="margin-right: 5px;"><b><t t-esc="widget.progessBarPercentage || 0"/>%</b></div>
+            </t>
+        </t>
+    </t>
+</template>
