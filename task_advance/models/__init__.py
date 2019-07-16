@@ -6,7 +6,7 @@
 #
 ##############################################################################
 
-from . import project
-from . import machine
-from . import product
-from . import order_line
+from . import aa_project
+from . import aa_machine
+from . import aa_product
+from . import aa_order_line

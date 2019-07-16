@@ -19,15 +19,15 @@
                 'sale_timesheet'],
     'data': [
         'security/ir.model.access.csv',
-        'data/project.xml',
-        'views/assets.xml',
-        'views/project_views.xml',
-        'views/machine_view.xml',
-        'views/product_view.xml',
-        'views/orderline_view.xml'
+        'data/aa_project.xml',
+        'views/aa_assets.xml',
+        'views/aa_project_views.xml',
+        'views/aa_machine_view.xml',
+        'views/aa_product_view.xml',
+        'views/aa_orderline_view.xml'
     ],
     'qweb': [
-        'static/src/xml/templates.xml',
+        'static/src/xml/aa_templates.xml',
     ],
     'demo': [
     ],
