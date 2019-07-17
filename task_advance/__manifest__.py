@@ -20,6 +20,7 @@
     'data': [
         'security/ir.model.access.csv',
         'data/aa_project.xml',
+        'wizard/aa_split_task.xml',
         'views/aa_assets.xml',
         'views/aa_project_views.xml',
         'views/aa_machine_view.xml',

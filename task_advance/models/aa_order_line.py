@@ -44,6 +44,13 @@ class SaleOrderLine(models.Model):
             })
         return aa_res
 
+    @api.multi
+    def _timesheet_create_task(self, project):
+        aa_res = super(SaleOrderLine, self)._timesheet_create_task(project)
+        aa_res.aa_capacity_machine_id.aa_compute_total_time()
+        aa_res.aa_capacity_machine_id.aa_compute_remain_capacity()
+        return aa_res
+
     @api.depends('order_id.confirmation_date', 'product_id.aa_product_lead_time')
     def aa_compute_production_date(self):
         for aa_rec in self:
@@ -63,7 +70,8 @@ class SaleOrderLine(models.Model):
                 if not aa_machine_capacity:
                     aa_machine_capacity = aa_machine_obj.create({
                         'aa_resource_id': aa_rec.aa_resource_id.id,
-                        'aa_date': aa_rec.aa_production_date.date()
+                        'aa_date': aa_rec.aa_production_date.date(),
+                        'aa_capacity': 18.0
                     })
                     aa_machine_capacity.write({
                         'aa_name' : aa_machine_capacity.aa_join_name_date(aa_rec.aa_resource_id.name, aa_rec.aa_production_date.date())

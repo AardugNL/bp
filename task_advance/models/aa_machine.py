@@ -29,7 +29,7 @@ class aa_Capacity(models.Model):
     def aa_compute_total_time(self):
         for aa_record in self:
             aa_record.aa_total_Production_time = round(sum(
-                aa_record.aa_task_ids.mapped('production_time_count')), 2)
+                aa_record.aa_task_ids.mapped('aa_production_time_count')), 2)
 
     @api.depends('aa_total_Production_time', 'aa_capacity')
     def aa_compute_remain_capacity(self):

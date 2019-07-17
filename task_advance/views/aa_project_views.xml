@@ -107,7 +107,7 @@
                     <templates>
                     <t t-name="kanban-box">
                         <div t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)} oe_kanban_card oe_kanban_global_click">
-                            <div class="oe_kanban_content" t-att-data-id="record.id.value">
+                            <div class="oe_kanban_content" t-att-data-id="record.id.value" style="opacity:1; background:white;">
                                 <div class="o_kanban_record_top">
                                     <div class="o_kanban_record_headings">
                                         <field name="description" widget="html"/>
@@ -187,6 +187,9 @@
             <field name="model">project.task</field>
             <field name="inherit_id" ref="project.view_task_form2"/>
             <field name="arch" type="xml">
+                <xpath expr="//form/header" position="inside">
+                    <button name="%(aa_action_split_task)d" string="Split Task" type="action" class="btn-primary"></button>
+                </xpath>
                 <xpath expr="//form/sheet/group/group[1]" position="inside">
                     <field name="aa_production_start_time" invisible="1"/>
                     <field name="aa_production_end_time" invisible="1"/>
