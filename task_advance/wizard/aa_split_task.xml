@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="aa_view_wizard_split_task_form" model="ir.ui.view">
+            <field name="name">split.task</field>
+            <field name="model">aa.split.task</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Split Task">
+                    <group>
+                        <group>
+                            <field name="aa_no_of_split_task"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="aa_create_split_task" string="Create Task" class='btn-primary' type="object"/>
+                        <button class="btn-default" string="Cancel" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <act_window id ="aa_action_split_task"
+            name="Split Wizard"
+            res_model='aa.split.task'
+            src_model='project.task'
+            view_type='form'
+            view_mode='form'
+            target='new'
+            />
+        <record id="aa_split_task_line_form" model="ir.ui.view">
+            <field name="name">subtask.lines.form</field>
+            <field name="model">aa.split.task</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Create Split task">
+                    <field name="aa_split_task_line">
+                        <tree string="Subtask Lines" editable="bottom" create="false">
+                            <field name="name"/>
+                            <field name="project_id"/>
+                            <field name="aa_production_time_count"/>
+                        </tree>
+                    </field>
+                    <footer>
+                        <button name="aa_save_split_task" string="Save" class='btn-primary' type='object'/>
+                        <button string="Close" special="cancel" class="btn-default"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>
