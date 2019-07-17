@@ -6,10 +6,10 @@ odoo.define('description_on_task.aa_description', function (require) {
 
     KanbanRecord.include({
         init: function(parent, options) {
-            this.events["mouseover .aa_customerName"] = "aa_hideRecords";
-            this.events["mouseout .aa_customerName"] = "aa_showRecords";
-            this.events["mouseover .aa_kanbanTag"] = "aa_decorateRecords";
-            this.events["mouseout .aa_kanbanTag"] = "aa_removeDecorationRecords";
+            this.events["click .aa_customerName"] = "aa_hideRecords";
+            // this.events["dblclick .aa_customerName"] = "aa_showRecords";
+            this.events["click .aa_kanbanTag"] = "aa_decorateRecords";
+            // this.events["dblclick .aa_kanbanTag"] = "aa_removeDecorationRecords";
             this._super.apply(this, arguments);
         },
 
@@ -25,21 +25,28 @@ odoo.define('description_on_task.aa_description', function (require) {
                     if (aa_templateTag[aa_t].dataset){
                         for (var aa_task in aa_tasks){
                             if (aa_templateTag[aa_t].dataset.id == aa_tasks[aa_task]){
-                                aa_templateTag[aa_t].style.opacity = 0.1
+                                console.log(aa_templateTag);
+                                console.log(aa_templateTag[aa_t])
+                                if (aa_templateTag[aa_t].style.opacity == '1'){
+                                    aa_templateTag[aa_t].style.opacity = 0.1;
+                                }
+                                else{
+                                     aa_templateTag[aa_t].style.opacity = 1;
+                                }
                             }
                         }
                     }
                 }
             });
         },
-        aa_showRecords: function (event){
-            var aa_templateTag = document.getElementsByClassName('oe_kanban_content')
-            for (var aa_t in aa_templateTag){
-                if (aa_templateTag[aa_t].dataset){
-                    aa_templateTag[aa_t].style.opacity = 1
-                }
-            }
-        },
+        // aa_showRecords: function (event){
+        //     var aa_templateTag = document.getElementsByClassName('oe_kanban_content')
+        //     for (var aa_t in aa_templateTag){
+        //         if (aa_templateTag[aa_t].dataset){
+        //             aa_templateTag[aa_t].style.opacity = 1
+        //         }
+        //     }
+        // },
         aa_decorateRecords: function (event) {
             var aa_self = this;
             aa_self._rpc({
@@ -52,21 +59,26 @@ odoo.define('description_on_task.aa_description', function (require) {
                     if (aa_templateTag[aa_t].dataset){
                         for (var aa_task in aa_tasks){
                             if (aa_templateTag[aa_t].dataset.id == aa_tasks[aa_task]){
-                                aa_templateTag[aa_t].style.background = '#C0D4C3'
+                                if (aa_templateTag[aa_t].style.background == 'white'){
+                                    aa_templateTag[aa_t].style.background = '#C0D4C3'
+                                }
+                                else{
+                                    aa_templateTag[aa_t].style.background = 'white'
+                                }
                             }
                         }
                     }
                 }
             });
         },
-        aa_removeDecorationRecords: function (event){
-            var aa_templateTag = document.getElementsByClassName('oe_kanban_content')
-            for (var aa_t in aa_templateTag){
-                if (aa_templateTag[aa_t].dataset){
-                    aa_templateTag[aa_t].style.background = 'white'
-                }
-            }
-        },
+        // aa_removeDecorationRecords: function (event){
+        //     var aa_templateTag = document.getElementsByClassName('oe_kanban_content')
+        //     for (var aa_t in aa_templateTag){
+        //         if (aa_templateTag[aa_t].dataset){
+        //             aa_templateTag[aa_t].style.background = 'white'
+        //         }
+        //     }
+        // },
     });
 
     // KanbanController.include({
