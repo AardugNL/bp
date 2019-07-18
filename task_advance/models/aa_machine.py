@@ -19,10 +19,10 @@ class aa_Capacity(models.Model):
     aa_resource_id = fields.Many2one('resource.resource', string='Machine')
     aa_date = fields.Date('Date')
     aa_capacity = fields.Float('Capacity')
-    aa_remain_capacity = fields.Float(string='Remain Capacity', compute='compute_remain_capacity',
+    aa_remain_capacity = fields.Float(string='Remain Capacity', compute='aa_compute_remain_capacity',
         store=True)
     aa_task_ids = fields.One2many('project.task', 'aa_capacity_machine_id', string='Tasks')
-    aa_total_Production_time = fields.Float(string="Total Production Time", compute='compute_total_time',
+    aa_total_Production_time = fields.Float(string="Total Production Time", compute='aa_compute_total_time',
         store=True)
 
     @api.depends('aa_task_ids.aa_production_time_count')
@@ -66,12 +66,12 @@ class aa_Capacity(models.Model):
     def write(self, vals):
         aa_resource = self.env['resource.resource']
         if vals.get('aa_date') and not vals.get("aa_resource_id"):
-            self.aa_name = self.aa_join_name_date(self.aa_resource_id.aa_name,
+            self.aa_name = self.aa_join_name_date(self.aa_resource_id.name,
                 datetime.datetime.strptime(vals.get('aa_date'), DFORMAT))
         if vals.get("aa_resource_id") and not vals.get("aa_date"):
             self.aa_name = self.aa_join_name_date(aa_resource.browse(
-                vals.get("aa_resource_id")).aa_name, self.aa_date)
+                vals.get("aa_resource_id")).name, self.aa_date)
         if vals.get("aa_resource_id") and vals.get('aa_date'):
-            self.aa_name = self.aa_join_name_date(aa_resource.browse(vals.get("aa_resource_id")).aa_name,
+            self.aa_name = self.aa_join_name_date(aa_resource.browse(vals.get("aa_resource_id")).name,
                 datetime.datetime.strptime(vals.get('aa_date'), DFORMAT))
         return super(aa_Capacity, self).write(vals)
