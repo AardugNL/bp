@@ -29,6 +29,7 @@
     ],
     'qweb': [
         'static/src/xml/aa_templates.xml',
+        'static/src/xml/aa_machine_dashboard.xml'
     ],
     'demo': [
     ],

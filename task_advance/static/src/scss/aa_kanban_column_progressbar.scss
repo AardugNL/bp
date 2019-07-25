@@ -6,3 +6,65 @@
 .o_kanban_view.o_kanban_grouped.o_kanban_small_column.kanban_large_width .o_kanban_group:not(.o_column_folded) {
     width: 350px !important;
 }
+
+.o_kanban_view.o_kanban_grouped.o_kanban_small_column.kanban_progress_html .o_kanban_group:not(.o_column_folded) {
+    width: 195px !important;
+}
+
+.o_kanban_view.kanban_progress_html {
+    &.o_kanban_view .o_kanban_group {
+    padding: 0 !important;
+    }
+    &.o_kanban_view.o_kanban_grouped{
+        background-color: #fff;
+    }
+    &.o_kanban_view.o_kanban_grouped div:nth-child(even){
+        background-color: content-box;
+    }
+}
+
+.table_header {
+    text-align: center;
+    vertical-align: middle;
+    background-color: #FFF380;
+}
+.table_header_date {
+    text-align: center;
+    vertical-align: middle;
+    background-color: #FFF380;
+}
+.table_header_date:hover{
+    background-color: darkgray;
+    color:white;
+    cursor:pointer;  /* you may delete this if you want */
+}
+.resource_occupied {
+    background-color: #f77c5d !important;
+    cursor:pointer;
+}
+.resource_hollyday {
+    background-color: blue !important;
+    cursor:pointer;
+}
+.resource_free {
+    background-color: #30b273 !important;
+    cursor:pointer;
+}
+.resource_leave {
+    background-color: #f4ac2e !important;
+    cursor:pointer;
+}
+.resource_conflict {
+    background-color: #f4ac2e !important;
+    cursor:pointer;
+    background-image: '/resource_management/static/src/img/conflict.png';
+}
+.fht-table{
+    width: -webkit-fill-available !important;
+}
+.search-data {
+    width: 80px;
+    position: absolute;
+    top: 22px;
+    /*right: 90px;*/
+}

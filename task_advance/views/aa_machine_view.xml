@@ -13,10 +13,12 @@
                                 <field name="aa_name" readonly="1"/>
                                 <field name="aa_resource_id" required="1"/>
                                 <field name="aa_remain_capacity" widget="float_time"/>
+                                <field name="aa_plan_only"/>
                             </group>
                             <group>
                                 <field name="aa_date" required="1"/>
                                 <field name="aa_capacity" widget="float_time"/>
+                                <field name="aa_progress" widget="progressbar"/>
                             </group>
                         </group>
                         <notebook>
@@ -54,6 +56,34 @@
             </field>
         </record>
 
+        <!-- <record id="aa_capacity_machine_kanban_view" model="ir.ui.view">
+            <field name="name">capacity.machine.kanban</field>
+            <field name="model">aa.capacity.machine</field>
+            <field name="arch" type="xml">
+                <kanban class="o_kanban_small_column kanban_progress_html" default_group_by="aa_date:day">
+                    <field name="aa_name"/>
+                    <field name="aa_capacity"/>
+                    <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                            <div class="oe_kanban_content">
+                                <div class="o_kanban_record_top">
+                                    <div style="width: 92%;"><field name="aa_capacity" widget="progressbar"/></div>
+                                </div>
+                                <div style="width:100%;">
+                                    <span>TASKS: 11 | </span>
+                                    <span>DUE: 12 | </span>
+                                    <span>PRIO: 10</span>
+                                </div>
+                            </div>
+                            <div class="oe_clear"></div>
+                        </div>
+                    </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record> -->
+
         <record id="action_aa_capacity_machine" model="ir.actions.act_window">
             <field name="name">Capacity</field>
             <field name="type">ir.actions.act_window</field>
@@ -63,6 +93,34 @@
         </record>
 
         <menuitem name="Machine Capacity" id="menu_aa_machine_capacity" parent="project.menu_project_config" action="action_aa_capacity_machine"/>
+
+        <record id="aa_capacity_dashboard_form" model="ir.ui.view">
+            <field name="name">Capacity Form</field>
+            <field name="model">aa.capacity.machine</field>
+            <field name="arch" type="xml">
+                <form create="false" edit="false">
+                    <group col="4" colspan="4">
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                    </group>
+                    <field name="aa_machine_header" invisible="1"/>
+                    <field name="aa_machine_info" invisible="1"/>
+                    <widget name="machine_dashboard"/>
+                </form>
+            </field>
+        </record>
+
+        <record id="aa_action_capacity_dashboard" model="ir.actions.act_window">
+            <field name="name">Capacity Dashboard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">aa.capacity.machine</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+            <field name="view_id" ref="task_advance.aa_capacity_dashboard_form"/>
+        </record>
+
+        <menuitem name="Machine Capacity Dashboard" id="aa_menu_capacity_dashboard" parent="project.menu_project_config" action="aa_action_capacity_dashboard"/>
 
     </data>
 </odoo>
