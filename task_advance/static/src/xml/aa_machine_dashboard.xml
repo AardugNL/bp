@@ -9,9 +9,9 @@
                 <thead>
                     <t t-foreach="widget.aa_machine_header" t-as="header">
                         <tr>
-                            <th rowspan="3" class="table_header celda_encabezado_general" style="border-bottom: 0px; height: 76px; width:169px;">Machines</th>
+                            <td rowspan="3" class="table_header celda_encabezado_general" style="border-bottom: 0px; height: 76px; width:169px;">Machines</td>
                             <t t-foreach="header.header" t-as="date">
-                                <th class="table_header_date celda_encabezado_general" style="text-align:center;width: 150px;"><t t-esc="date"/></th>
+                                <td class="table_header_date celda_encabezado_general" style="text-align:center;width: 150px;"><t t-esc="date"/></td>
                             </t>
                         </tr>
                     </t>

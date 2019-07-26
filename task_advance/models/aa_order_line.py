@@ -74,6 +74,7 @@ class SaleOrderLine(models.Model):
                         'aa_capacity': 18.0
                     })
                     aa_machine_capacity.write({
-                        'aa_name' : aa_machine_capacity.aa_join_name_date(aa_rec.aa_resource_id.name, aa_rec.aa_production_date.date())
+                        'aa_name' : aa_machine_capacity.aa_join_name_date(
+                            aa_rec.aa_resource_id.name, aa_rec.aa_production_date.date(), False)
                     })
                 aa_rec.aa_capacity_machine_id = aa_machine_capacity.id

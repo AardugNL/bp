@@ -19,17 +19,19 @@ class aa_Capacity(models.Model):
     aa_resource_id = fields.Many2one('resource.resource', string='Machine')
     aa_date = fields.Date('Date')
     aa_capacity = fields.Float('Capacity')
-    aa_remain_capacity = fields.Float(string='Remain Capacity', compute='aa_compute_remain_capacity',
-        store=True)
-    aa_task_ids = fields.One2many('project.task', 'aa_capacity_machine_id', string='Tasks')
-    aa_total_Production_time = fields.Float(string="Total Production Time", compute='aa_compute_total_time',
-        store=True)
+    aa_remain_capacity = fields.Float(string='Remain Capacity',
+        compute='aa_compute_remain_capacity', store=True)
+    aa_task_ids = fields.One2many('project.task', 'aa_capacity_machine_id',
+        string='Tasks')
+    aa_total_Production_time = fields.Float(string="Total Production Time",
+        compute='aa_compute_total_time', store=True)
     aa_machine_header = fields.Text('Machine Header')
     aa_machine_info = fields.Text('Machine Info')
     date_from = fields.Date('From', default=fields.Date.today())
     date_to = fields.Date('To', default=datetime.date.today() + datetime.timedelta(days=6))
     aa_plan_only = fields.Boolean(string='Plan Only')
     aa_progress = fields.Float(compute='_compute_progress', store=True, string='Progress')
+
 
     @api.depends('aa_capacity', 'aa_remain_capacity')
     def _compute_progress(self):
@@ -123,3 +125,27 @@ class aa_Capacity(models.Model):
             vals.get('aa_resource_id') or vals.get('aa_date')):
             self.aa_name = self.aa_join_name_date(aa_res.name, aa_date, aa_plan)
         return super(aa_Capacity, self).write(vals)
+
+    @api.multi
+    def create_machine_capcities(self):
+        tomorrow = self.aa_date + datetime.timedelta(days=1)
+        for day in range(300):
+            nextDay = tomorrow + datetime.timedelta(days=day)
+            record = self.search([('aa_resource_id', '=', self.aa_resource_id.id),
+                ('aa_date', '=', nextDay)])
+            if record:
+                continue
+            self.create({'aa_resource_id': self.aa_resource_id.id,
+                         'aa_plan_only': self.aa_plan_only,
+                         'aa_date': nextDay,
+                         'aa_capacity': self.aa_capacity})
+
+
+class aa_resource(models.Model):
+    _inherit = 'resource.resource'
+
+    aa_code = fields.Char(string='Code', size=4)
+
+    @api.onchange('aa_code')
+    def code_in_uppercase(self):
+        self.aa_code = self.aa_code.upper()

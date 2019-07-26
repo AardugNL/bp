@@ -7,6 +7,9 @@
             <field name="model">aa.capacity.machine</field>
             <field name="arch" type="xml">
                 <form>
+                    <header>
+                        <button name="create_machine_capcities" string="Create Machine Capacities" type="object" class="oe_highlight"/>
+                    </header>
                     <sheet>
                         <group>
                             <group>
@@ -52,6 +55,7 @@
                     <field name="aa_resource_id"/>
                     <field name="aa_date"/>
                     <field name="aa_capacity" widget="float_time"/>
+                    <field name="aa_remain_capacity" widget="float_time"/>
                 </tree>
             </field>
         </record>

@@ -16,7 +16,7 @@
     'category': 'Project',
     'version': '12.0',
     'depends': ['project', 'hr_timesheet', 'sale_management', 'product',
-                'sale_timesheet'],
+                'sale_timesheet','resource'],
     'data': [
         'security/ir.model.access.csv',
         'data/aa_project.xml',
@@ -25,7 +25,8 @@
         'views/aa_project_views.xml',
         'views/aa_machine_view.xml',
         'views/aa_product_view.xml',
-        'views/aa_orderline_view.xml'
+        'views/aa_orderline_view.xml',
+        'views/aa_machine_resource.xml'
     ],
     'qweb': [
         'static/src/xml/aa_templates.xml',
