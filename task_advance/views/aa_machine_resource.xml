@@ -15,5 +15,15 @@
                 </xpath>
             </field>
         </record>
+
+        <record id="action_aa_machine_resource" model="ir.actions.act_window">
+            <field name="name">Resource</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">resource.resource</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Resource" id="aa_menu_machine_resource" parent="project.menu_project_config" action="action_aa_machine_resource"/>
     </data>
 </odoo>
