@@ -36,7 +36,7 @@ class aa_Capacity(models.Model):
     @api.depends('aa_capacity', 'aa_remain_capacity')
     def _compute_progress(self):
         for aa_rec in self:
-            if aa_rec.aa_remain_capacity:
+            if aa_rec.aa_remain_capacity > 0:
                 aa_rec.aa_progress = round(
                     aa_rec.aa_remain_capacity / aa_rec.aa_capacity * 100, 2)
 
