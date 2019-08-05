@@ -13,8 +13,8 @@ class aa_ProductTemplate(models.Model):
     _inherit = 'product.template'
 
     aa_resource_id = fields.Many2one('resource.resource', string='Machine')
-    aa_capacity_machine_id = fields.Many2one('aa.capacity.machine',
-        string='Machine Capacity')
+    # aa_capacity_machine_id = fields.Many2one('aa.capacity.machine',
+    #     string='Machine Capacity')
     aa_preproduction_time = fields.Float('Pre Production Time')
     aa_production_time_1 = fields.Float('Production Time 1')
     aa_production_time_2 = fields.Float('Production Time 2')

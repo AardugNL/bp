@@ -60,6 +60,15 @@ class SaleOrderLine(models.Model):
                 aa_rec.aa_production_date = aa_rec.order_id.confirmation_date + datetime.timedelta(
                     minutes=aa_rec.product_id.aa_product_lead_time)
 
+    @api.onchange('aa_capacity_machine_id', 'aa_resource_id')
+    def _onchange_cap(self):
+        if self._origin.task_id:
+            self._origin.task_id.write({
+                'aa_capacity_machine_id': self.aa_capacity_machine_id.id,
+                'aa_resource_id' : self.aa_resource_id.id})
+            self.product_id.write({
+                'aa_resource_id' : self.aa_resource_id.id})
+
     # @api.depends('aa_production_date', 'aa_resource_id')
     # def aa_compute_machine_capacity(self):
     #     aa_machine_obj = self.env['aa.capacity.machine']

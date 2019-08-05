@@ -2,6 +2,22 @@
 <odoo>
     <data>
 
+        <record id="aa_machine_capacity_view_search" model="ir.ui.view">
+            <field name="name">aa.capacity.machine.search</field>
+            <field name="model">aa.capacity.machine</field>
+            <field name="arch" type="xml">
+               <search string="Machine Capacities">
+                    <field name="aa_name" string="Capacity Name"/>
+                    <field name="aa_resource_id"/>
+                    <!-- <field name="aa_last_sunday"/> -->
+                    <separator/>
+                        <filter string="35 Days" name="aa_date"
+                        domain="[('aa_date', '&gt;=', (datetime.date.today() - datetime.timedelta(days=datetime.date.today().weekday()+1)).strftime('%Y-%m-%d')),
+                        ('aa_date', '&lt;=', (datetime.date.today() - (datetime.timedelta(days=datetime.date.today().weekday()+1)) + datetime.timedelta(days=35)).strftime('%Y-%m-%d'))]"/>
+                </search>
+            </field>
+        </record>
+
         <record id="aa_capacity_machine_form" model="ir.ui.view">
             <field name="name">Capacity Form</field>
             <field name="model">aa.capacity.machine</field>
@@ -40,6 +56,9 @@
                                     </group>
                                 </group>
                             </page>
+                            <page name="aa_html" string="HTML">
+                                <field name="aa_html"/>
+                            </page>
                         </notebook>
                     </sheet>
                 </form>
@@ -60,40 +79,40 @@
             </field>
         </record>
 
-        <!-- <record id="aa_capacity_machine_kanban_view" model="ir.ui.view">
+        <record id="aa_capacity_machine_kanban_view" model="ir.ui.view">
             <field name="name">capacity.machine.kanban</field>
             <field name="model">aa.capacity.machine</field>
             <field name="arch" type="xml">
-                <kanban class="o_kanban_small_column kanban_progress_html" default_group_by="aa_date:day">
+                <kanban class="o_kanban_small_column oe_kanban_card oe_kanban_global_click o_kanban_record" default_group_by="aa_resource_id">
                     <field name="aa_name"/>
                     <field name="aa_capacity"/>
+                    <field name="aa_html"/>
+                    <field name="aa_plan_only"/>
                     <templates>
-                    <t t-name="kanban-box">
-                        <div t-attf-class="oe_kanban_card oe_kanban_global_click">
-                            <div class="oe_kanban_content">
-                                <div class="o_kanban_record_top">
-                                    <div style="width: 92%;"><field name="aa_capacity" widget="progressbar"/></div>
-                                </div>
-                                <div style="width:100%;">
-                                    <span>TASKS: 11 | </span>
-                                    <span>DUE: 12 | </span>
-                                    <span>PRIO: 10</span>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_card oe_kanban_global_click  #{record.aa_plan_only.raw_value ? 'oe_kanban_my_color' : 'oe_kanban_color_white'}">
+                                <div class="oe_kanban_content">
+                                    <div class="o_kanban_record_top">
+                                        <div class="o_kanban_record_headings">
+                                            <field name="aa_name"/>
+                                            <br/>
+                                            <field name="aa_html" widget="html"/>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="oe_clear"></div>
-                        </div>
-                    </t>
+                        </t>
                     </templates>
                 </kanban>
             </field>
-        </record> -->
+        </record>
 
         <record id="action_aa_capacity_machine" model="ir.actions.act_window">
             <field name="name">Capacity</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">aa.capacity.machine</field>
             <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">kanban,tree,form</field>
         </record>
 
         <menuitem name="Machine Capacity" id="menu_aa_machine_capacity" parent="project.menu_project_config" action="action_aa_capacity_machine"/>

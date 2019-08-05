@@ -31,7 +31,7 @@ class aa_Capacity(models.Model):
     date_to = fields.Date('To', default=datetime.date.today() + datetime.timedelta(days=6))
     aa_plan_only = fields.Boolean(string='Plan Only')
     aa_progress = fields.Float(compute='_compute_progress', store=True, string='Progress')
-
+    aa_html = fields.Html()
 
     @api.depends('aa_capacity', 'aa_remain_capacity')
     def _compute_progress(self):
@@ -110,6 +110,12 @@ class aa_Capacity(models.Model):
         if aa_res.aa_date and aa_res.aa_resource_id:
             aa_res.aa_name = self.aa_join_name_date(
                 aa_res.aa_resource_id.name, aa_res.aa_date, aa_res.aa_plan_only)
+        task = self.env['project.task'].create({
+                'name': 'STARTUP',
+                'aa_resource_id': aa_res.aa_resource_id.id,
+                'aa_capacity_machine_id': aa_res.id,
+                'project_id': self.env.ref('task_advance.production_project').id,
+                'aa_freeze': True})
         return aa_res
 
     @api.multi

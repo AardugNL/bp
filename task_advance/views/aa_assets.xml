@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
-	<template id="aa_task_assets_backend" name="Task Kanban assets" inherit_id="web.assets_backend">
+    
+    <template id="aa_task_assets_backend" name="Task Kanban assets" inherit_id="web.assets_backend">
         <xpath expr="." position="inside">
             <script type="text/javascript" src="/task_advance/static/src/js/aa_task_kanban_progressbar.js"></script>
             <link rel="stylesheet" type="text/scss" href="/task_advance/static/src/scss/aa_kanban_column_progressbar.scss"/>
-
             <script type="text/javascript" src="/task_advance/static/src/js/aa_machine_dashboard.js"></script>
+            <script type="text/javascript" src="/task_advance/static/src/js/aa_reload_kanban.js"></script>
         </xpath>
     </template>
 

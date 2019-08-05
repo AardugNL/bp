@@ -16,11 +16,12 @@
     'category': 'Project',
     'version': '12.0',
     'depends': ['project', 'hr_timesheet', 'sale_management', 'product',
-                'sale_timesheet','resource'],
+                'sale_timesheet','resource', 'sale'],
     'data': [
         'security/ir.model.access.csv',
         'data/aa_project.xml',
         'wizard/aa_split_task.xml',
+        'wizard/aa_fire_sql.xml',
         'views/aa_assets.xml',
         'views/aa_project_views.xml',
         'views/aa_machine_view.xml',
