@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="aa_view_wizard_procedure_form" model="ir.ui.view">
+            <field name="name">aa.procedure</field>
+            <field name="model">aa.procedure</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Procudure">
+                    <footer>
+                        <button name="aa_create_capacity_machine" string="Continue" class='btn-primary' type="object"/>
+                        <button class="btn-default" string="Cancel" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+      
+        <record id="action_aa_procedure" model="ir.actions.act_window">
+            <field name="name">Procedures</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">aa.procedure</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="task_advance.aa_view_wizard_procedure_form"/>
+        </record>
+
+        <menuitem name="Procedures" id="aa_menu_procedures" parent="project.menu_main_pm" sequence="110" action="action_aa_procedure"/>
+    </data>
+</odoo>

@@ -22,6 +22,7 @@
         'data/aa_project.xml',
         'wizard/aa_split_task.xml',
         'wizard/aa_fire_sql.xml',
+        'wizard/aa_procedure.xml',
         'views/aa_assets.xml',
         'views/aa_project_views.xml',
         'views/aa_machine_view.xml',

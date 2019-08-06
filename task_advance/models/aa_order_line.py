@@ -19,7 +19,7 @@ class SaleOrderLine(models.Model):
     #     string='Production Location', compute='aa_compute_machine_capacity')
     aa_capacity_machine_id = fields.Many2one('aa.capacity.machine',
         string='Machine Capacity')
-    aa_group = fields.Text()
+    aa_group = fields.Text(string='Group')
     aa_production_date = fields.Datetime('Production Date', compute='aa_compute_production_date')
 
     @api.depends('product_uom_qty', 'product_id.aa_production_time_1')

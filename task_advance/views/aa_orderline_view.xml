@@ -7,10 +7,11 @@
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//notebook/page/field/tree/field[@name='product_uom_qty']" position="after">
-                    <field name="aa_total_production_time" widget="float_time"/>
-                    <field name="aa_resource_id"/>
-                    <field name="aa_capacity_machine_id" domain="[('aa_resource_id', '=', aa_resource_id), ('aa_date', '>=', datetime.date.today().strftime('%Y-%m-%d'))]" attrs="{'readonly': [('aa_resource_id', '=', False)]}"/>
-                    <field name="aa_production_date"/>
+                    <!-- <field name="aa_total_production_time" widget="float_time"/> -->
+                    <field name="aa_resource_id" domain = "[('resource_type','=','material')]" options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"/>
+                    <field name="aa_capacity_machine_id" domain="[('aa_resource_id', '=', aa_resource_id), ('aa_date', '>=', datetime.date.today().strftime('%Y-%m-%d'))]" attrs="{'readonly': [('aa_resource_id', '=', False)]}"  options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"/>
+                    <!-- <field name="aa_capacity_machine_id" domain="[('aa_resource_id', '=', aa_resource_id), ('aa_date', '>=', datetime.date.today().strftime('%Y-%m-%d'))]" attrs="{'readonly': [('aa_resource_id', '=', False)]}" /> -->
+                    <!-- <field name="aa_production_date"/> -->
                 </xpath>
                 <xpath expr="//notebook/page/field/tree/field[@name='product_id']" position="before">
                     <field name="aa_group"/>

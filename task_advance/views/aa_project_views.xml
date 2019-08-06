@@ -244,6 +244,9 @@
                         attrs="{'readonly': [('aa_freeze', '=', True)]}"/>
                     <field name="aa_production_state" invisible="0"/>
                 </xpath>
+                <field name='date_last_stage_update' position='after'>
+                    <field name='aa_startup'></field>
+                </field>
             </field>
         </record>
 

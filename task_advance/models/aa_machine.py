@@ -29,9 +29,19 @@ class aa_Capacity(models.Model):
     aa_machine_info = fields.Text('Machine Info')
     date_from = fields.Date('From', default=fields.Date.today())
     date_to = fields.Date('To', default=datetime.date.today() + datetime.timedelta(days=6))
+    aa_is_sunday = fields.Boolean(string='Is Sunday', compute='check_is_sunday',
+        store=True)
     aa_plan_only = fields.Boolean(string='Plan Only')
     aa_progress = fields.Float(compute='_compute_progress', store=True, string='Progress')
     aa_html = fields.Html()
+    aa_active = fields.Boolean(string='Active')
+
+    @api.depends('aa_date')
+    def check_is_sunday(self):
+        for record in self:
+            day = record.aa_date.weekday()
+            if day == 6:
+                record.aa_is_sunday = True
 
     @api.depends('aa_capacity', 'aa_remain_capacity')
     def _compute_progress(self):
@@ -115,7 +125,8 @@ class aa_Capacity(models.Model):
                 'aa_resource_id': aa_res.aa_resource_id.id,
                 'aa_capacity_machine_id': aa_res.id,
                 'project_id': self.env.ref('task_advance.production_project').id,
-                'aa_freeze': True})
+                'aa_freeze': True,
+                'aa_startup':True})
         return aa_res
 
     @api.multi
@@ -132,19 +143,19 @@ class aa_Capacity(models.Model):
             self.aa_name = self.aa_join_name_date(aa_res.name, aa_date, aa_plan)
         return super(aa_Capacity, self).write(vals)
 
-    @api.multi
-    def create_machine_capcities(self):
-        tomorrow = self.aa_date + datetime.timedelta(days=1)
-        for day in range(300):
-            nextDay = tomorrow + datetime.timedelta(days=day)
-            record = self.search([('aa_resource_id', '=', self.aa_resource_id.id),
-                ('aa_date', '=', nextDay)])
-            if record:
-                continue
-            self.create({'aa_resource_id': self.aa_resource_id.id,
-                         'aa_plan_only': self.aa_plan_only,
-                         'aa_date': nextDay,
-                         'aa_capacity': self.aa_capacity})
+    # @api.multi
+    # def create_machine_capacities(self):
+    #     tomorrow = self.aa_date + datetime.timedelta(days=1)
+    #     for day in range(300):
+    #         nextDay = tomorrow + datetime.timedelta(days=day)
+    #         record = self.search([('aa_resource_id', '=', self.aa_resource_id.id),
+    #             ('aa_date', '=', nextDay)])
+    #         if record:
+    #             continue
+    #         self.create({'aa_resource_id': self.aa_resource_id.id,
+    #                      'aa_plan_only': self.aa_plan_only,
+    #                      'aa_date': nextDay,
+    #                      'aa_capacity': self.aa_capacity})
 
 
 class aa_resource(models.Model):

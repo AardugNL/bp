@@ -8,3 +8,4 @@
 
 from . import aa_split_task
 from . import aa_fire_sql
+from . import aa_procedure
