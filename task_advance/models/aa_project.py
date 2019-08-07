@@ -27,7 +27,7 @@ class aa_ProjectTask(models.Model):
     aa_resource_id = fields.Many2one('resource.resource', string='Machine', readonly=True)
     aa_production_state = fields.Selection([('done', 'Done'), ('blocked', 'Blocked')])
     aa_freeze = fields.Boolean(string='aa_freeze')
-    aa_startup = fields.Char(string='STARTUP', readonly=True)
+    aa_startup = fields.Boolean(string='STARTUP', readonly=True)
 
     # @api.onchange('aa_production_start_time', 'aa_production_end_time')
     # def _onchange_production_date(self):
@@ -50,7 +50,7 @@ class aa_ProjectTask(models.Model):
         if vals.get('aa_capacity_machine_id'):
             if self.aa_freeze == True:
                 raise ValidationError('\
-                    Warning! You can not change capacity for this record.')
+                    Unable to move.')
             else:
                 orderLine = (self.env['sale.order.line'].browse(
                     vals.get('sale_line_id')) if vals.get('sale_line_id') else self.sale_line_id)

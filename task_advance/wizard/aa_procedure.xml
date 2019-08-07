@@ -16,7 +16,7 @@
         </record>
       
         <record id="action_aa_procedure" model="ir.actions.act_window">
-            <field name="name">Procedures</field>
+            <field name="name">Optimise all</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">aa.procedure</field>
             <field name="view_type">form</field>

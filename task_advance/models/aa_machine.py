@@ -29,7 +29,7 @@ class aa_Capacity(models.Model):
     aa_machine_info = fields.Text('Machine Info')
     date_from = fields.Date('From', default=fields.Date.today())
     date_to = fields.Date('To', default=datetime.date.today() + datetime.timedelta(days=6))
-    aa_is_sunday = fields.Boolean(string='Is Sunday', compute='check_is_sunday',
+    aa_plan_only = fields.Boolean(string='Plan Only', compute='check_plan_only',
         store=True)
     aa_plan_only = fields.Boolean(string='Plan Only')
     aa_progress = fields.Float(compute='_compute_progress', store=True, string='Progress')
@@ -37,11 +37,11 @@ class aa_Capacity(models.Model):
     aa_active = fields.Boolean(string='Active')
 
     @api.depends('aa_date')
-    def check_is_sunday(self):
+    def check_plan_only(self):
         for record in self:
             day = record.aa_date.weekday()
             if day == 6:
-                record.aa_is_sunday = True
+                record.aa_plan_only = True
 
     @api.depends('aa_capacity', 'aa_remain_capacity')
     def _compute_progress(self):
