@@ -99,7 +99,8 @@
                                 <div class="oe_kanban_content">
                                     <div class="o_kanban_record_top">
                                         <div class="o_kanban_record_headings">
-                                            <!--<field name="aa_name"/><br/>-->
+                                            <field name="aa_name"/>
+                                            <br/>
                                             <field name="aa_html" widget="html"/>
                                         </div>
                                     </div>

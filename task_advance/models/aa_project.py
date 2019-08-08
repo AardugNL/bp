@@ -18,6 +18,7 @@ class aa_Project(models.Model):
 
 class aa_ProjectTask(models.Model):
     _inherit = 'project.task'
+    _order = 'aa_startup desc'
 
     aa_production_start_time = fields.Datetime('Production Start Time')
     aa_production_end_time = fields.Datetime('Production End Time')
@@ -28,6 +29,7 @@ class aa_ProjectTask(models.Model):
     aa_production_state = fields.Selection([('done', 'Done'), ('blocked', 'Blocked')])
     aa_freeze = fields.Boolean(string='aa_freeze')
     aa_startup = fields.Boolean(string='STARTUP', readonly=True)
+    aa_html = fields.Html()
 
     # @api.onchange('aa_production_start_time', 'aa_production_end_time')
     # def _onchange_production_date(self):

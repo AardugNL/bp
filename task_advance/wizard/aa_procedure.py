@@ -34,7 +34,7 @@ class aa_procedures(models.TransientModel):
         self.env.cr.execute(""" DELETE FROM aa_capacity_machine 
                                     WHERE aa_resource_id IS NULL;
                             """)
-        
+
         #should not be necessary TODO
         self.env.cr.execute(""" DELETE FROM project_task 
                                     WHERE aa_capacity_machine_id IS NULL; 
@@ -45,13 +45,10 @@ class aa_procedures(models.TransientModel):
                             DELETE FROM aa_capacity_machine where aa_date < '2019-08-01';
                             DELETE FROM project_task WHERE date_start < '2019-08-01';
                             """)
-        
-        
-        
         self.env.cr.execute("""  UPDATE aa_capacity_machine 
                                     SET aa_plan_only = False
                             """)
-        
+
         self.env.cr.execute("""
                                 UPDATE aa_capacity_machine 
                                     SET aa_plan_only = True WHERE EXTRACT(DOW FROM aa_date) = 0;
@@ -102,14 +99,18 @@ class aa_procedures(models.TransientModel):
                                         '</div>',
                                         '</td>',
                                         '<td style="width: 36px" align="right">',
+                                        
                                                  aa_used[floor((random()*16))::int]+ 1, '|',aa_norm[floor((random()*2)+1)::int],
+                                           
                                         '</td>',
                                         '<td>',
-                                        '<div style="float: right; padding: 1px; color: ', aa_color[floor((random()*3)+1)::int], '"><li class="fa ', aa_icons[floor((random()*3)+1)::int], ' fa-1x"></li></div>', 
+                                        '
+                                             <div style="float: right; padding: 1px; color: ', aa_color[floor((random()*3)+1)::int], '"><li class="fa ', aa_icons[floor((random()*3)+1)::int], ' fa-1x"></li></div>
+                                        ', 
 
                                           '<div class="details" style="z-index: 9999; display:none; position:absolute; top: 6px; width: 300px; 
-                                                       background-color: #eef0f2; padding: 4px 4px 4px 4px; border: 1px solid #7c7bad;">', aa_reasons[floor((random()*4)+1)::int], '</div>',
-
+                                                             background-color: #eef0f2; padding: 4px 4px 4px 4px; border: 1px solid #7c7bad;">', aa_reasons[floor((random()*4)+1)::int], '</div>',
+                                        
                                         '</td>',
                                         '</tr>',
                                         '</table>',
@@ -119,7 +120,7 @@ class aa_procedures(models.TransientModel):
                                     UPDATE aa_capacity_machine SET aa_html = trim(regexp_replace(aa_html, '\s+', ' ', 'g'));
                                 END $$; 
                             """)
-                            
+
         self.env.cr.execute("""
                             UPDATE project_task 
                                 SET description = aa_capacity_machine.aa_html
@@ -151,6 +152,3 @@ class aa_procedures(models.TransientModel):
                             INNER JOIN res_partner ON res_partner.id = sale_order.partner_id 
                             WHERE sale_order.id = project_task.sale_order_id AND project_task.aa_startup = False;
                             """)
-
-
-

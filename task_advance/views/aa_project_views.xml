@@ -121,7 +121,7 @@
                             <div class="oe_kanban_content" t-att-data-id="record.id.value" style="opacity:1; background:white;">
                                 <div class="o_kanban_record_top">
                                     <div class="o_kanban_record_headings">
-                                        <field name="description" widget="html"/>
+                                        <field name="aa_html" widget="html"/>
                                         <!-- <field name="aa_freeze" widget="boolean_switch"/> -->
                                         <small class="o_kanban_record_subtitle text-muted">
                                             <field name="aa_capacity_machine_id" attrs="{'readonly':[('name','like','STARTUP')], 'invisible':[('name','=','STARTUP')]}"/>
@@ -274,6 +274,11 @@
                     <field name="aa_capacity_machine_id" domain="[('aa_resource_id', '=', aa_resource_id)]"/>
                     <field name="aa_production_state" invisible="0"/>
                     <field name="aa_freeze" invisible="0"/>
+                </xpath>
+                <xpath expr="//form/sheet/notebook/page[@name='extra_info']" position="after">
+                    <page name="aa_html" string="HTML">
+                        <field name="aa_html"/>
+                    </page>
                 </xpath>
             </field>
         </record>
